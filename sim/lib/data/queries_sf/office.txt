@@ -1,0 +1,3 @@
+node["office"]
+way["office"]
+way["building"="office"]
