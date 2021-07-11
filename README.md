@@ -15,20 +15,20 @@ In order to conduct this project, I will use data from San Francisco COVID-19 ca
 For the purposes of this exercise, all preliminary results are in [sim-example-prelim.ipynb](sim/sim-example-prelim.ipynb). These preliminary results suggest that 26% opt-in to provide contacts on average of 2 (as given from SF data), is insignificant. 
 
 <p align="center">
-<img width="33%" src="/plots/run0_ex_CT.png">
-<img width="33%" src="./plots/run0_ex_noCTpng">
+<img width="33%" src="./img/run0_ex_CT.png">
+<img width="33%" src="./img/run0_ex_noCTpng">
 </p>
 
 Thus manual contact tracing is currently only useful to remind people who have tested positive to stay at home. The follow up question is at what percentage opt-in and how many contacts on average will be necessary for manual contact tracing to be an affective intervention beyond promoting individuals who are tested positive to stay at home?
 
 ## Research conducted leading up to the analysis above
 
-The Stanford Future Bay Initiative did a grid search for the best transmission value and probability of an individual to stay at home for each Wave of the pandemic. The results for Wave 2 are provided in [plot_bayopt.m](plot/plot_bayopt.m) 
+The Stanford Future Bay Initiative did a grid search for the best transmission value and probability of an individual to stay at home for each Wave of the pandemic. The results for Wave 2 are provided in [plot_bayopt.m](lib/plot_bayopt.m) 
 
 <p align="center">
-<img width="33%" src="/plots/BayesOpt_obj.png">
-<img width="33%" src="./plots/LR_beta_obj.png">
-<img width="33%" src="./plots/LR_p_obj.png">
+<img width="33%" src="./img/BayesOpt_obj.png">
+<img width="33%" src="./img/LR_beta_obj.png">
+<img width="33%" src="./img/LR_p_obj.png">
 </p>
 
 
