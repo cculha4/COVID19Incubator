@@ -1,34 +1,35 @@
 # A Spatiotemporal Epidemic Model to Quantify The Effects of Testing, Contact Tracing and Containment
 
-This repository contains scripts and notebooks to run the sampling algorithm of a high resolution spatiotemporal epidemic model, which can be used to predict the spread of COVID-19 under different testing & tracing strategies, social distancing measures and business restrictions in an arbitrary city/town. Details about the relevant theory and methods can be found in the [paper](https://arxiv.org/abs/2004.07641).
+This repository contains scripts and notebooks to analyze data from San Francisco, CA, USA COVID-19 cases and from a spatiotemporal epidemiology model data with alternations from Stanford Future Bay Initiative [paper](https://arxiv.org/abs/2004.07641). Here, I specifically look at manual contact tracing and the impact it had on Wave 2 of the pandemic. 
 
 ## Project description
 
-We introduce a modeling framework for studying epidemics that is specifically designed to make use of fine-grained spatiotemporal data. Motivated by the availability of data from contact tracing technologies and the current COVID-19 outbreak, our model uses marked temporal point processes to represent individual mobility patterns and the course of the disease for each individual in a population.
+Manual contact tracing is one of the most heavily invested interventions by counties to combat COVID-19. While in cities like San Francisco, 85% of the individuals who are reached after a positive test respond to a call from a nurse, only 26% of the population provide further contacts to further help with the intervention. I propose to use a prebuilt epidemiology simulator that was developed in collaboration with my research team at Stanford to analyze how increasing the number of contacts provided or the percentage of individuals who provide contacts can significant decrease the spread of the virus. The project will show 
 
-The sampling algorithm provided in this repository can be used to predict the spread of COVID-19 under different testing & tracing strategies, social distancing measures and business restrictions, given location or contact histories of individuals. Moreover, it gives a detailed representation of the disease's effect on each individual through time, distinguishing between several known states like asymptomatic, presymptomatic, symptomatic or recovered. For instance, the figures below are an example of the effective reproduction number under the scenario when either no measures are being implemented, or when social distancing and business restriction measures are introduced. 
+1. 25% of contact tracing with 2 individuals being provided on average is statistically significant in combating the virus; 
+2. if more individuals were to provide contacts or more contacts are provided, the decrease in number of infections is statistically significant. 
+In order to conduct this project, I will use data from San Francisco COVID-19 case reservoir and the spatiotemporal epidemiology simulator that randomly simulates 40 instances. With the new variants on the rise, manual contact tracing, even more so than automated contact tracing, will be more powerful during winter season outbreaks. For this reason, this project has the potential to be very powerful. For example, if during a phone call, a nurse explains that by providing 3 contacts instead of 2, they can save 20% of potential exposure events, then maybe a positively infected individual will be more likely to provide contacts. 
 
-<p align="center">
-<img width="33%" src="./img/rt_no_lockdown.png">
-<img width="33%" src="./img/rt_lockdown.png">
-</p>
+## Jupyter Notebook with results
 
-An inference script based on Bayesian Optimization allows to calibrate the exposure risk at various sites to match real case data over time and per age group.
-
-The preliminary results generated using in this repository are focused on real COVID-19 data and mobility patterns from Tübingen, a town in the Southwest of Germany, but can be easily parameterized and used for generating realistic mobility patterns and simulating the spread of a disease for any given city/town. We are currently working on extending results for several towns and cities.
+For the purposes of this exercise, all preliminary results are in [sim-example-prelim.ipynb](sim/sim-example-prelim.ipynb). These preliminary results suggest that 26% opt-in to provide contacts on average of 2 (as given from SF data), is insignificant. 
 
 <p align="center">
-<img width="33%" src="./img/population_distribution.png">
-<img width="33%" src="./img/site_distribution.png">
+<img width="33%" src="/plots/run0_ex_CT.png">
+<img width="33%" src="./plots/run0_ex_noCTpng">
 </p>
 
-## Version of arXiv pre-print results
+Thus manual contact tracing is currently only useful to remind people who have tested positive to stay at home. The follow up question is at what percentage opt-in and how many contacts on average will be necessary for manual contact tracing to be an affective intervention beyond promoting individuals who are tested positive to stay at home?
 
-As we are in the process of significantly refactoring the code base and extending the experiments, we did not update the notebook used to simulate the paper experiments, as it is now deprecated.
-We release an up-to-date [example notebook](sim/sim-example.ipynb) that shows how to use the code, simulation, and various measures.
+## Research conducted leading up to the analysis above
 
-__If you would nevertheless like to play with the prior version or reproduce results currently shown in the arXiv pre-print, revert to commit__
-`28b14a1dca53e12573eabf99317b2c7517c81761`
+The Stanford Future Bay Initiative did a grid search for the best transmission value and probability of an individual to stay at home for each Wave of the pandemic. The results for Wave 2 are provided in [plot_bayopt.m](plot/plot_bayopt.m) 
+
+<p align="center">
+<img width="33%" src="/plots/BayesOpt_obj.png">
+<img width="33%" src="./plots/LR_beta_obj.png">
+<img width="33%" src="./plots/LR_p_obj.png">
+</p>
 
 
 ## Dependencies
@@ -41,7 +42,7 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-## Code organization
+## Code organization (original text from Lorch)
 
 In the following tables, short descriptions of notebooks and main scripts are given. The notebooks are self-explanatory and execution details can be found within them.
 
@@ -69,7 +70,7 @@ In the following tables, short descriptions of notebooks and main scripts are gi
 | [town_maps.py](sim/lib/plot.py) | Produces a **MapIllustrator** object for generating interactive maps. |
 
 
-## Citation
+## Citation for the simulation 
 
 If you use parts of the code in this repository for your own research purposes, please consider citing:
 
